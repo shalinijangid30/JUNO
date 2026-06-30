@@ -48,18 +48,18 @@
     }
 
     .nav-logo {
-      font-family: 'Archivo', sans-serif;
-      font-size: 1.45rem;
-      font-weight: 400;
-      font-style: italic;
-      letter-spacing: 0.01em;
       color: var(--cream);
       text-decoration: none;
-      text-transform: uppercase;
       margin-right: 40px;
       flex-shrink: 0;
       transform: rotate(-45deg);
       display: inline-block;
+      line-height: 0;
+    }
+    .nav-logo svg {
+      height: 34px;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -531,14 +531,9 @@
     .footer-logo {
       text-align: center;
     }
-    .footer-logo span {
-      font-family: 'Archivo', sans-serif;
-      font-size: 3.2rem;
-      font-weight: 700;
-      font-style: italic;
-      color: var(--cream);
-      text-transform: uppercase;
-      letter-spacing: 0.01em;
+    .footer-logo svg {
+      height: 72px;
+      width: auto;
     }
 
     .footer-col.right { text-align: right; }
@@ -599,7 +594,27 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="index.html" class="nav-logo">JUNO</a>
+    <a href="index.html" class="nav-logo" aria-label="JUNO">
+      <svg viewBox="0 0 590 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="translate(80,15)" fill="none" stroke="currentColor" stroke-width="36">
+          <g transform="skewX(-12)">
+            <!-- J: flat butt top, round-capped hook terminal -->
+            <path d="M 32 0 L 32 148"
+                  stroke-linecap="butt"/>
+            <path d="M 32 148 C 32 193 14 210 -4 210 C -22 210 -24 195 -24 174"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- U: flat tops, smooth round bowl -->
+            <path d="M 84 0 L 84 148 C 84 228 168 228 168 148 L 168 0"
+                  stroke-linecap="butt" stroke-linejoin="round"/>
+            <!-- N: flat terminals, sharp miter at diagonal junctions -->
+            <path d="M 222 210 L 222 0 L 312 210 L 312 0"
+                  stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="20"/>
+            <!-- O: smooth oval, consistent stroke weight -->
+            <ellipse cx="418" cy="105" rx="62" ry="105"/>
+          </g>
+        </g>
+      </svg>
+    </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#experience">Experience</a></li>
@@ -730,7 +745,17 @@
         <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
       </div>
       <div class="footer-logo">
-        <span>JUNO</span>
+        <svg viewBox="0 0 590 240" xmlns="http://www.w3.org/2000/svg" aria-label="JUNO">
+          <g transform="translate(80,15)" fill="none" stroke="currentColor" stroke-width="36">
+            <g transform="skewX(-12)">
+              <path d="M 32 0 L 32 148" stroke-linecap="butt"/>
+              <path d="M 32 148 C 32 193 14 210 -4 210 C -22 210 -24 195 -24 174" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 84 0 L 84 148 C 84 228 168 228 168 148 L 168 0" stroke-linecap="butt" stroke-linejoin="round"/>
+              <path d="M 222 210 L 222 0 L 312 210 L 312 0" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="20"/>
+              <ellipse cx="418" cy="105" rx="62" ry="105"/>
+            </g>
+          </g>
+        </svg>
       </div>
       <div class="footer-col right">
         <h4>Menu</h4>
