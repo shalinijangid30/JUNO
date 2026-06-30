@@ -36,61 +36,98 @@
       z-index: 100;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 28px 56px;
+      gap: 0;
+      padding: 0 48px;
+      height: 64px;
       background: transparent;
-      transition: background 0.4s, padding 0.4s;
+      transition: background 0.4s;
     }
     nav.scrolled {
       background: rgba(12,11,8,0.94);
       backdrop-filter: blur(12px);
-      padding: 18px 56px;
     }
 
     .nav-logo {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.7rem;
+      font-size: 1.55rem;
       font-weight: 800;
       font-style: italic;
       letter-spacing: 0.04em;
       color: var(--cream);
       text-decoration: none;
       text-transform: uppercase;
+      margin-right: 40px;
+      flex-shrink: 0;
+    }
+
+    /* underline on active/home */
+    .nav-logo::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: var(--cream);
+      margin-top: 2px;
     }
 
     .nav-links {
       display: flex;
-      gap: 44px;
+      align-items: center;
+      gap: 0;
       list-style: none;
+      flex: 1;
     }
-    .nav-links a {
+    .nav-links li a {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.63rem;
       font-weight: 300;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--cream-dim);
       text-decoration: none;
-      transition: color 0.3s;
+      padding: 0 22px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: color 0.3s, border-color 0.3s;
     }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links li a:hover { color: var(--cream); border-bottom-color: var(--cream); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .nav-ig {
+      display: flex;
+      align-items: center;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+      padding: 0 8px;
+    }
+    .nav-ig:hover { color: var(--gold); }
+    .nav-ig svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; }
 
     .nav-reserve a {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 400;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--bg);
-      background: var(--gold);
-      padding: 10px 24px;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 9px 22px;
       text-decoration: none;
-      transition: background 0.3s;
+      transition: background 0.3s, color 0.3s;
+      white-space: nowrap;
     }
-    .nav-reserve a:hover { background: var(--cream); }
+    .nav-reserve a:hover { background: var(--gold); color: var(--bg); }
 
     /* hamburger */
-    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: auto; }
     .nav-toggle span { width: 24px; height: 1px; background: var(--cream); display: block; transition: 0.3s; }
 
     /* ── HERO ─────────────────────────────────── */
@@ -553,7 +590,7 @@
       nav.scrolled { padding: 16px 28px; }
       .nav-links { display: none; flex-direction: column; gap: 24px; position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: var(--bg-alt); padding: 80px 40px; }
       .nav-links.open { display: flex; }
-      .nav-reserve { display: none; }
+      .nav-right { display: none; }
       .nav-toggle { display: flex; }
       section { padding: 80px 28px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -576,8 +613,17 @@
       <li><a href="menu.html">Menu</a></li>
       <li><a href="index.html#locations">Locations</a></li>
     </ul>
-    <div class="nav-reserve">
-      <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
+    <div class="nav-right">
+      <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener" class="nav-ig" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4.5"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <div class="nav-reserve">
+        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener">Reserve</a>
+      </div>
     </div>
     <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
       <span></span><span></span><span></span>
