@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>juno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600;1,700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #0c0b08;
+      --bg-alt:    #141210;
+      --cream:     #f0e9dc;
+      --cream-dim: #a89880;
+      --gold:      #c4a35a;
+      --gold-dim:  #7a6236;
+      --rule:      rgba(196,163,90,0.22);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 56px;
+      background: transparent;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(12,11,8,0.94);
+      backdrop-filter: blur(12px);
+      padding: 18px 56px;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-reserve a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .nav-reserve a:hover { background: var(--cream); }
+
+    /* hamburger */
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle span { width: 24px; height: 1px; background: var(--cream); display: block; transition: 0.3s; }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(12,11,8,0.45) 0%, rgba(12,11,8,0.1) 40%, rgba(12,11,8,0.55) 100%),
+        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80') center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .hero-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(6rem, 16vw, 13rem);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 0.85;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      display: block;
+      margin-bottom: 36px;
+    }
+
+    .hero-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 200;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 56px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 14px 40px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .hero-cta:hover { background: var(--cream); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--gold);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ── SECTION SHARED ──────────────────────── */
+    section { padding: 120px 56px; }
+
+    .section-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+    }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      text-align: center;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--cream-dim);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── ABOUT ───────────────────────────────── */
+    .about {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 72px auto 0;
+    }
+
+    .about-image {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85) saturate(0.85);
+      transition: transform 0.8s ease;
+    }
+    .about-image:hover img { transform: scale(1.04); }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--rule);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .about-text { padding: 20px 0; }
+
+    .about-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cream-dim);
+      margin-bottom: 20px;
+    }
+
+    .about-text p:first-child {
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+
+    /* ── EXPERIENCE ──────────────────────────── */
+    .experience {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .experience-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1100px;
+      margin: 72px auto 0;
+    }
+
+    .exp-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 2/3;
+    }
+    .exp-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6) saturate(0.7);
+      transition: transform 0.8s ease, filter 0.5s ease;
+    }
+    .exp-card:hover img { transform: scale(1.06); filter: brightness(0.75) saturate(0.8); }
+
+    .exp-card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 32px;
+      background: linear-gradient(to top, rgba(12,11,8,0.9) 0%, transparent 100%);
+    }
+    .exp-card-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .exp-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    /* ── LOCATIONS ───────────────────────────── */
+    .locations {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      max-width: 1100px;
+      margin: 72px auto 0;
+      background: var(--rule);
+    }
+
+    .loc-card {
+      background: var(--bg);
+      padding: 56px 40px;
+      text-align: center;
+      position: relative;
+      transition: background 0.4s;
+    }
+    .loc-card:hover { background: var(--bg-alt); }
+
+    .loc-icon {
+      width: 1px;
+      height: 44px;
+      background: var(--gold);
+      margin: 0 auto 32px;
+    }
+
+    .loc-city {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .loc-country {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 24px;
+    }
+
+    .loc-status {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .loc-status.soon { color: var(--gold-dim); }
+
+    /* ── MENU TEASER ─────────────────────────── */
+    .menu-teaser {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      height: 60vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-teaser-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(12,11,8,0.6), rgba(12,11,8,0.6)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1800&q=80') center/cover no-repeat;
+    }
+
+    .menu-teaser-content {
+      position: relative;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .menu-teaser-content .section-label { margin-bottom: 16px; }
+
+    .menu-teaser-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 40px;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      border: 1px solid var(--gold);
+      padding: 14px 40px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--rule);
+      padding: 72px 56px 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 40px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .footer-col p, .footer-col a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+      line-height: 1.9;
+      text-decoration: none;
+      display: block;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-logo {
+      text-align: center;
+    }
+    .footer-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .footer-col.right { text-align: right; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid var(--rule);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 24px;
+    }
+    .social-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .social-links a:hover { color: var(--gold); }
+
+    /* ── MOBILE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 22px 28px; }
+      nav.scrolled { padding: 16px 28px; }
+      .nav-links { display: none; flex-direction: column; gap: 24px; position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: var(--bg-alt); padding: 80px 40px; }
+      .nav-links.open { display: flex; }
+      .nav-reserve { display: none; }
+      .nav-toggle { display: flex; }
+      section { padding: 80px 28px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .experience-cards { grid-template-columns: 1fr; }
+      .locations-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-col.right { text-align: left; }
+      .footer-logo { order: -1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">juno</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="index.html#locations">Locations</a></li>
+    </ul>
+    <div class="nav-reserve">
+      <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Doha &nbsp;·&nbsp; Riyadh &nbsp;·&nbsp; Kuwait City</p>
+      <span class="hero-wordmark">juno</span>
+      <p class="hero-sub">A dining experience</p>
+      <a href="menu.html" class="hero-cta">Explore the Menu</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-rule"></div>
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">Where every meal<br>becomes a memory</h2>
+
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80" alt="Juno Restaurant Interior" />
+      </div>
+      <div class="about-text">
+        <p>juno is a destination defined by the art of gathering — where considered cuisine, gracious hospitality, and refined atmosphere converge.</p>
+        <p>Born from a passion for elevated dining, juno brings together seasonal ingredients, precise technique, and warm, intuitive service. Each dish tells a story of craftsmanship, each visit an occasion to remember.</p>
+        <p>From our dining rooms in Doha and Riyadh to our forthcoming home in Kuwait City, juno carries a singular identity across every table — intimate, unhurried, and always exceptional.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience" id="experience">
+    <div class="section-rule"></div>
+    <p class="section-label">The Experience</p>
+    <h2 class="section-title">Crafted for the senses</h2>
+
+    <div class="experience-cards">
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=80" alt="Cuisine" />
+        <div class="exp-card-content">
+          <p class="exp-card-label">Cuisine</p>
+          <p class="exp-card-title">Seasonal &amp; considered</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Ambiance" />
+        <div class="exp-card-content">
+          <p class="exp-card-label">Ambiance</p>
+          <p class="exp-card-title">Intimate &amp; refined</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80" alt="Drinks" />
+        <div class="exp-card-content">
+          <p class="exp-card-label">Beverages</p>
+          <p class="exp-card-title">Curated selections</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU TEASER -->
+  <div class="menu-teaser">
+    <div class="menu-teaser-bg"></div>
+    <div class="menu-teaser-content">
+      <p class="section-label">The Menu</p>
+      <h2>A journey through flavour</h2>
+      <a href="menu.html" class="btn-outline">View the Menu</a>
+    </div>
+  </div>
+
+  <!-- LOCATIONS -->
+  <section class="locations" id="locations">
+    <div class="section-rule"></div>
+    <p class="section-label">Find Us</p>
+    <h2 class="section-title">Our locations</h2>
+    <p class="section-body">juno is present across the Gulf with a growing footprint rooted in the pursuit of exceptional dining.</p>
+
+    <div class="locations-grid">
+      <div class="loc-card">
+        <div class="loc-icon"></div>
+        <p class="loc-city">Doha</p>
+        <p class="loc-country">Qatar</p>
+        <p class="loc-status">Now Open</p>
+      </div>
+      <div class="loc-card">
+        <div class="loc-icon"></div>
+        <p class="loc-city">Riyadh</p>
+        <p class="loc-country">Saudi Arabia</p>
+        <p class="loc-status">Now Open</p>
+      </div>
+      <div class="loc-card">
+        <div class="loc-icon"></div>
+        <p class="loc-city">Kuwait City</p>
+        <p class="loc-country">Kuwait</p>
+        <p class="loc-status soon">Coming Soon</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer-logo">
+        <span>juno</span>
+      </div>
+      <div class="footer-col right">
+        <h4>Menu</h4>
+        <a href="menu.html">View Menu</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#locations">Locations</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 juno. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

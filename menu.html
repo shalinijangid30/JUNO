@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — juno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600;1,700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #0c0b08;
+      --bg-alt:    #141210;
+      --cream:     #f0e9dc;
+      --cream-dim: #a89880;
+      --gold:      #c4a35a;
+      --gold-dim:  #7a6236;
+      --rule:      rgba(196,163,90,0.22);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 56px;
+      background: rgba(12,11,8,0.94);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    .nav-reserve a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .nav-reserve a:hover { background: var(--cream); }
+
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle span { width: 24px; height: 1px; background: var(--cream); display: block; }
+
+    /* ── PAGE HERO ────────────────────────────── */
+    .page-hero {
+      padding: 180px 56px 100px;
+      text-align: center;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(196,163,90,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .page-hero p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── TAB NAV ──────────────────────────────── */
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+      background: var(--bg-alt);
+      position: sticky;
+      top: 72px;
+      z-index: 50;
+    }
+
+    .tab-btn {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      background: none;
+      border: none;
+      border-bottom: 1px solid transparent;
+      padding: 22px 36px;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--cream); }
+    .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ── MENU CONTENT ─────────────────────────── */
+    .menu-content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+    }
+
+    .menu-section { display: none; }
+    .menu-section.active { display: block; }
+
+    .menu-category {
+      padding-top: 80px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+    .category-header::before,
+    .category-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .category-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .menu-items { display: flex; flex-direction: column; gap: 0; }
+
+    .menu-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .menu-item:last-child { border-bottom: none; }
+
+    .item-info {}
+
+    .item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    .item-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+      line-height: 1.6;
+    }
+
+    .item-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* ── RESERVE CTA ──────────────────────────── */
+    .reserve-cta {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--rule);
+      padding: 100px 56px;
+      text-align: center;
+    }
+
+    .reserve-cta .section-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+    }
+
+    .reserve-cta p.label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .reserve-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+
+    .reserve-cta p.body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--cream-dim);
+      margin-bottom: 48px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 16px 48px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-gold:hover { background: var(--cream); }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+      padding: 48px 56px;
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo-sm {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .footer-bottom p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+    }
+
+    .social-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .social-links a:hover { color: var(--gold); }
+
+    /* ── MOBILE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 22px 28px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .page-hero { padding: 140px 28px 80px; }
+      .menu-tabs { flex-wrap: wrap; top: 66px; }
+      .tab-btn { padding: 16px 20px; font-size: 0.58rem; letter-spacing: 0.18em; }
+      .menu-content { padding: 0 20px 80px; }
+      .reserve-cta { padding: 80px 28px; }
+      footer { padding: 40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">juno</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="index.html#locations">Locations</a></li>
+    </ul>
+    <div class="nav-reserve">
+      <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="nav-toggle" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <p class="page-hero-label">juno</p>
+    <h1>The Menu</h1>
+    <p>Seasonally inspired, meticulously crafted — a reflection of our commitment to the finest ingredients and timeless technique.</p>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="switchTab('starters', this)">Starters</button>
+    <button class="tab-btn" onclick="switchTab('mains', this)">Mains</button>
+    <button class="tab-btn" onclick="switchTab('desserts', this)">Desserts</button>
+    <button class="tab-btn" onclick="switchTab('beverages', this)">Beverages</button>
+  </div>
+
+  <!-- MENU CONTENT -->
+  <div class="menu-content">
+
+    <!-- STARTERS -->
+    <div class="menu-section active" id="starters">
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">Cold Starters</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Tuna Crudo</p>
+              <p class="item-desc">Sashimi-grade bluefin, ponzu gel, micro shiso, toasted sesame oil</p>
+            </div>
+            <p class="item-price">SAR 85</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Burrata &amp; Heritage Tomato</p>
+              <p class="item-desc">Slow-roasted heirlooms, aged balsamic, pistachio crumb, basil oil</p>
+            </div>
+            <p class="item-price">SAR 75</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Wagyu Tartare</p>
+              <p class="item-desc">Hand-cut A5 wagyu, truffle aioli, quail yolk, crisp capers, grilled sourdough</p>
+            </div>
+            <p class="item-price">SAR 120</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Lobster Bisque</p>
+              <p class="item-desc">Atlantic bisque, cognac cream, saffron, lobster tail medallion</p>
+            </div>
+            <p class="item-price">SAR 110</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">Warm Starters</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Seared Scallops</p>
+              <p class="item-desc">Hokkaido scallops, cauliflower purée, crispy pancetta, brown butter, chives</p>
+            </div>
+            <p class="item-price">SAR 130</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Mushroom Arancini</p>
+              <p class="item-desc">Black truffle risotto balls, aged parmesan foam, porcini dust</p>
+            </div>
+            <p class="item-price">SAR 68</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Lamb Merguez</p>
+              <p class="item-desc">Spiced lamb sausage, harissa labne, preserved lemon relish, flatbread</p>
+            </div>
+            <p class="item-price">SAR 90</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAINS -->
+    <div class="menu-section" id="mains">
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">From the Sea</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Pan-Roasted Sea Bass</p>
+              <p class="item-desc">Wild-caught sea bass, lemon beurre blanc, fennel confit, crispy capers, samphire</p>
+            </div>
+            <p class="item-price">SAR 185</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Whole Grilled Hammour</p>
+              <p class="item-desc">Gulf hammour, chermoula, charred lemon, tabbouleh, tahini dressing</p>
+            </div>
+            <p class="item-price">SAR 210</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Butter-Poached Lobster</p>
+              <p class="item-desc">Canadian lobster tail, saffron velouté, truffle potato mousseline, tarragon oil</p>
+            </div>
+            <p class="item-price">SAR 320</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">From the Land</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Wagyu Tenderloin</p>
+              <p class="item-desc">200g A4 wagyu fillet, bone marrow jus, roasted shallots, pommes soufflé</p>
+            </div>
+            <p class="item-price">SAR 420</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Slow-Braised Short Rib</p>
+              <p class="item-desc">72-hour prime rib, celery root purée, glazed carrots, red wine reduction</p>
+            </div>
+            <p class="item-price">SAR 230</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Roasted Lamb Rack</p>
+              <p class="item-desc">French-trimmed rack, pistachio crust, minted jus, ratatouille</p>
+            </div>
+            <p class="item-price">SAR 260</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Truffle Chicken</p>
+              <p class="item-desc">Free-range supreme, black truffle butter, wild mushroom ragout, asparagus</p>
+            </div>
+            <p class="item-price">SAR 155</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">Vegetarian</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Black Truffle Risotto</p>
+              <p class="item-desc">Carnaroli rice, Périgord truffle, aged parmesan, white wine, chive oil</p>
+            </div>
+            <p class="item-price">SAR 155</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Roasted Cauliflower</p>
+              <p class="item-desc">Whole roasted head, harissa butter, almonds, golden raisins, preserved lemon yoghurt</p>
+            </div>
+            <p class="item-price">SAR 110</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESSERTS -->
+    <div class="menu-section" id="desserts">
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">Desserts</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Valrhona Chocolate Fondant</p>
+              <p class="item-desc">Dark chocolate, molten centre, Madagascan vanilla ice cream, praline</p>
+            </div>
+            <p class="item-price">SAR 65</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Crème Brûlée</p>
+              <p class="item-desc">Classic Tahitian vanilla, torched caramel, sablé biscuit</p>
+            </div>
+            <p class="item-price">SAR 55</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Rose &amp; Pistachio Tart</p>
+              <p class="item-desc">Buttery pastry shell, pistachio frangipane, rosewater cream, edible petals</p>
+            </div>
+            <p class="item-price">SAR 60</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Seasonal Fruit Pavlova</p>
+              <p class="item-desc">Hand-whipped meringue, Chantilly cream, fresh seasonal fruits, passion fruit curd</p>
+            </div>
+            <p class="item-price">SAR 55</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Cheese Selection</p>
+              <p class="item-desc">Curated selection of three artisan cheeses, house-made quince, honeycomb, walnuts, crispbread</p>
+            </div>
+            <p class="item-price">SAR 95</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEVERAGES -->
+    <div class="menu-section" id="beverages">
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">Signature Mocktails</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Juno Sunrise</p>
+              <p class="item-desc">Mango, turmeric, fresh ginger, citrus, sparkling water</p>
+            </div>
+            <p class="item-price">SAR 38</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Garden Cooler</p>
+              <p class="item-desc">Cold-pressed cucumber, basil, lime, elderflower, mint foam</p>
+            </div>
+            <p class="item-price">SAR 38</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Rose Lemonade</p>
+              <p class="item-desc">House-made rosewater lemonade, dried rose petals, cardamom</p>
+            </div>
+            <p class="item-price">SAR 35</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Golden Spice</p>
+              <p class="item-desc">Turmeric, honey, black pepper, orange, soda</p>
+            </div>
+            <p class="item-price">SAR 35</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">Hot Beverages</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Single Origin Coffee</p>
+              <p class="item-desc">Rotating single-origin pour-over, seasonally selected</p>
+            </div>
+            <p class="item-price">SAR 28</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Arabian Karak</p>
+              <p class="item-desc">Spiced tea, full-cream milk, cardamom, saffron</p>
+            </div>
+            <p class="item-price">SAR 25</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Loose-Leaf Tea</p>
+              <p class="item-desc">Curated selection — Darjeeling, Moroccan Mint, Chamomile, Earl Grey</p>
+            </div>
+            <p class="item-price">SAR 28</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="category-header">
+          <span class="category-title">Cold Pressed &amp; Juices</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Green Vitality</p>
+              <p class="item-desc">Spinach, green apple, celery, cucumber, lemon</p>
+            </div>
+            <p class="item-price">SAR 32</p>
+          </div>
+          <div class="menu-item">
+            <div class="item-info">
+              <p class="item-name">Citrus Blend</p>
+              <p class="item-desc">Fresh-squeezed orange, grapefruit, blood orange</p>
+            </div>
+            <p class="item-price">SAR 30</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end menu-content -->
+
+  <!-- RESERVE CTA -->
+  <div class="reserve-cta">
+    <div class="section-rule"></div>
+    <p class="label">Reservations</p>
+    <h2>Join us at the table</h2>
+    <p class="body">We look forward to welcoming you. Reserve your table at juno Riyadh through our booking partner.</p>
+    <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="btn-gold">Reserve a Table</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-bottom">
+      <a href="index.html" class="footer-logo-sm">juno</a>
+      <p>&copy; 2025 juno. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(id, btn) {
+      document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
