@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,900;1,700;1,800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600;1,700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'JunoSlant';
+      src: url('JunoSlant-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -48,11 +55,15 @@
       color: var(--cream);
       text-decoration: none;
       flex-shrink: 0;
-      transform: rotate(-45deg);
       display: inline-block;
       line-height: 0;
     }
-    .nav-logo svg { height: 34px; width: auto; display: block; }
+    .nav-logo-text {
+      font-family: 'JunoSlant', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+    }
 
     .nav-center {
       display: flex;
@@ -453,15 +464,7 @@
   <!-- NAV -->
   <nav id="nav">
     <a href="index.html" class="nav-logo" aria-label="JUNO">
-      <svg viewBox="0 0 680 285" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <text x="125" y="220"
-              font-family="'Archivo', 'Arial Black', sans-serif"
-              font-weight="900"
-              font-size="210"
-              letter-spacing="-4"
-              fill="currentColor"
-              transform="skewX(-22)">JUNO</text>
-      </svg>
+      <span class="nav-logo-text">JUNO</span>
     </a>
     <div class="nav-center" id="navCenter">
       <ul class="nav-links">
