@@ -151,11 +151,15 @@
 
     /* ── PAGE HERO ────────────────────────────── */
     .page-hero {
-      padding: 180px 56px 100px;
+      padding: 0 56px;
+      min-height: 80vh;
       text-align: center;
       border-bottom: 1px solid var(--rule);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
     .page-hero::before {
@@ -163,9 +167,22 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(196,163,90,0.07) 0%, transparent 70%);
+        radial-gradient(ellipse at 50% 0%, rgba(196,163,90,0.07) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(12,11,8,0.55) 0%, rgba(12,11,8,0.75) 60%, rgba(12,11,8,0.95) 100%);
+      z-index: 1;
       pointer-events: none;
     }
+
+    .page-hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .page-hero > *:not(.page-hero-video) { position: relative; z-index: 2; }
 
     .page-hero-label {
       font-family: 'Montserrat', sans-serif;
@@ -202,11 +219,7 @@
       display: flex;
       justify-content: center;
       gap: 0;
-      border-bottom: 1px solid var(--rule);
-      background: var(--bg-alt);
-      position: sticky;
-      top: 72px;
-      z-index: 50;
+      margin-bottom: 40px;
     }
 
     .tab-btn {
@@ -304,67 +317,6 @@
       white-space: nowrap;
     }
 
-    /* ── RESERVE CTA ──────────────────────────── */
-    .reserve-cta {
-      background: var(--bg-alt);
-      border-top: 1px solid var(--rule);
-      padding: 100px 56px;
-      text-align: center;
-    }
-
-    .reserve-cta .section-rule {
-      width: 48px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto 28px;
-    }
-
-    .reserve-cta p.label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 300;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .reserve-cta h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--cream);
-      margin-bottom: 16px;
-    }
-
-    .reserve-cta p.body {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--cream-dim);
-      margin-bottom: 48px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.8;
-    }
-
-    .btn-gold {
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--gold);
-      padding: 16px 48px;
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn-gold:hover { background: var(--cream); }
-
     /* ── FOOTER ──────────────────────────────── */
     footer {
       background: var(--bg);
@@ -427,7 +379,6 @@
       .menu-tabs { flex-wrap: wrap; top: 60px; }
       .tab-btn { padding: 16px 20px; font-size: 0.58rem; letter-spacing: 0.18em; }
       .menu-content { padding: 0 20px 80px; }
-      .reserve-cta { padding: 80px 28px; }
       footer { padding: 40px 28px; }
     }
   </style>
@@ -472,17 +423,16 @@
 
   <!-- PAGE HERO -->
   <div class="page-hero">
-    <p class="page-hero-label">juno</p>
-    <h1>The Menu</h1>
-    <p>Seasonally inspired, meticulously crafted — a reflection of our commitment to the finest ingredients and timeless technique.</p>
-  </div>
-
-  <!-- TAB NAV -->
-  <div class="menu-tabs">
-    <button class="tab-btn active" onclick="switchTab('starters', this)">Starters</button>
-    <button class="tab-btn" onclick="switchTab('mains', this)">Mains</button>
-    <button class="tab-btn" onclick="switchTab('desserts', this)">Desserts</button>
-    <button class="tab-btn" onclick="switchTab('beverages', this)">Beverages</button>
+    <video class="page-hero-video" autoplay muted loop playsinline>
+      <source src="Video-790.mp4" type="video/mp4">
+    </video>
+    <!-- TAB NAV -->
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="switchTab('starters', this)">Starters</button>
+      <button class="tab-btn" onclick="switchTab('mains', this)">Mains</button>
+      <button class="tab-btn" onclick="switchTab('desserts', this)">Desserts</button>
+      <button class="tab-btn" onclick="switchTab('beverages', this)">Beverages</button>
+    </div>
   </div>
 
   <!-- MENU CONTENT -->
@@ -783,15 +733,6 @@
     </div>
 
   </div><!-- end menu-content -->
-
-  <!-- RESERVE CTA -->
-  <div class="reserve-cta">
-    <div class="section-rule"></div>
-    <p class="label">Reservations</p>
-    <h2>Join us at the table</h2>
-    <p class="body">We look forward to welcoming you. Reserve your table at juno Riyadh through our booking partner.</p>
-    <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="btn-gold">Reserve a Table</a>
-  </div>
 
   <!-- FOOTER -->
   <footer>
