@@ -262,6 +262,19 @@
       pointer-events: none;
       z-index: 1;
     }
+    .photo-slot.filled::before,
+    .photo-slot.filled .slot-icon,
+    .photo-slot.filled .slot-label {
+      display: none;
+    }
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .feature-col:hover .photo-slot img { transform: scale(1.04); }
     .slot-icon {
       width: 28px;
       height: 28px;
@@ -753,13 +766,8 @@
         <span class="feature-col-title">Menu</span>
         <span class="feature-col-arrow">View &rarr;</span>
       </div>
-      <div class="photo-slot">
-        <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span class="slot-label">Attach photo</span>
+      <div class="photo-slot filled">
+        <img src="menu.jpg" alt="JUNO menu dish" loading="lazy" />
       </div>
     </a>
     <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="feature-col">
@@ -767,13 +775,8 @@
         <span class="feature-col-title">Reserve</span>
         <span class="feature-col-arrow">Book &rarr;</span>
       </div>
-      <div class="photo-slot">
-        <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span class="slot-label">Attach photo</span>
+      <div class="photo-slot filled">
+        <img src="reserve.jpg" alt="JUNO restaurant interior" loading="lazy" />
       </div>
     </a>
   </div>
