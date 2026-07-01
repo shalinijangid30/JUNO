@@ -39,10 +39,19 @@
       grid-template-columns: auto 1fr auto;
       align-items: center;
       padding: 0 48px;
-      height: 72px;
+      height: 88px;
+      background: transparent;
+      backdrop-filter: blur(0px);
+      box-shadow: none;
+      transition: height 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    nav.scrolled {
+      height: 68px;
       background: rgba(12,11,8,0.94);
       backdrop-filter: blur(12px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
     }
+    nav.scrolled .nav-logo svg { height: 28px; }
 
     .nav-logo {
       color: var(--cream);
@@ -75,7 +84,7 @@
       color: var(--cream-dim);
       text-decoration: none;
       padding: 0 26px;
-      height: 72px;
+      height: 100%;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -95,7 +104,7 @@
     .nav-dropdown:hover .dropdown-caret { transform: rotate(180deg); }
     .nav-dropdown-menu {
       position: absolute;
-      top: 72px;
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(14,13,10,0.97);
@@ -578,6 +587,11 @@
   </footer>
 
   <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
     function toggleNav() {
       document.getElementById('navCenter').classList.toggle('open');
     }
