@@ -214,7 +214,9 @@
 
     /* ── INTRO ────────────────────────────────── */
     .intro {
-      background: var(--bg);
+      background:
+        linear-gradient(rgba(12,11,8,0.82), rgba(12,11,8,0.88)),
+        url('3.jpg') center/cover no-repeat;
       padding: 96px 40px;
       border-top: 1px solid var(--rule);
     }
@@ -222,6 +224,8 @@
       max-width: 720px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
     .intro-eyebrow {
       font-family: 'Montserrat', sans-serif;
@@ -262,6 +266,19 @@
       pointer-events: none;
       z-index: 1;
     }
+    .photo-slot.filled::before,
+    .photo-slot.filled .slot-icon,
+    .photo-slot.filled .slot-label {
+      display: none;
+    }
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .feature-col:hover .photo-slot img { transform: scale(1.04); }
     .slot-icon {
       width: 28px;
       height: 28px;
@@ -324,26 +341,40 @@
     .feature-col:hover .feature-col-arrow { opacity: 1; transform: translateX(0); }
     .feature-col .photo-slot { aspect-ratio: 4/3; width: 100%; }
 
-    /* ── GALLERY STRIP ────────────────────────── */
+    /* ── GALLERY CAROUSEL ─────────────────────── */
     .gallery-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       border-top: 1px solid var(--rule);
+      background:
+        linear-gradient(rgba(12,11,8,0.6), rgba(12,11,8,0.75)),
+        url('3.jpg') center/cover no-repeat;
+      padding: 48px 0;
+      scroll-margin-top: 80px;
+      display: flex;
+      justify-content: center;
     }
-    .gallery-strip .photo-slot {
-      aspect-ratio: 3/4;
-      border-right: 1px solid var(--rule);
+    .gallery-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 9/16;
+      overflow: hidden;
     }
-    .gallery-strip .photo-slot:last-child { border-right: none; }
+    .gallery-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1;
+    }
+    .gallery-slide.active { opacity: 1; z-index: 2; }
+    .gallery-slide img,
+    .gallery-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-    /* ── WIDE PHOTO SLOT ──────────────────────── */
-    .wide-photo-slot {
-      border-top: 1px solid var(--rule);
-    }
-    .wide-photo-slot .photo-slot {
-      height: 55vh;
-      min-height: 320px;
-    }
 
     /* ── LOCATIONS ────────────────────────────── */
     .locations {
@@ -664,8 +695,7 @@
       .feature-row { grid-template-columns: 1fr; }
       .feature-col { border-right: none; border-bottom: 1px solid var(--rule); }
       .feature-col-head { padding: 36px 28px 28px; }
-      .gallery-strip { grid-template-columns: 1fr; }
-      .gallery-strip .photo-slot { border-right: none; border-bottom: 1px solid var(--rule); aspect-ratio: 4/3; }
+      .gallery-carousel { max-width: 280px; }
       .locations { padding: 72px 24px; }
       .locations-grid { grid-template-columns: 1fr; }
       .location-detail-inner { grid-template-columns: 1fr; }
@@ -733,9 +763,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE anchor (offset target) -->
-  <div id="experience" style="position:relative;top:-80px;"></div>
-
   <!-- INTRO TEXT -->
   <section class="intro" id="about">
     <div class="intro-inner">
@@ -753,13 +780,8 @@
         <span class="feature-col-title">Menu</span>
         <span class="feature-col-arrow">View &rarr;</span>
       </div>
-      <div class="photo-slot">
-        <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span class="slot-label">Attach photo</span>
+      <div class="photo-slot filled">
+        <img src="menu.jpg" alt="JUNO menu dish" loading="lazy" />
       </div>
     </a>
     <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="feature-col">
@@ -767,54 +789,31 @@
         <span class="feature-col-title">Reserve</span>
         <span class="feature-col-arrow">Book &rarr;</span>
       </div>
-      <div class="photo-slot">
-        <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span class="slot-label">Attach photo</span>
+      <div class="photo-slot filled">
+        <img src="reserve.jpg" alt="JUNO restaurant interior" loading="lazy" />
       </div>
     </a>
   </div>
 
-  <!-- WIDE PHOTO SLOT — hero-scale interior/food image -->
-  <div class="wide-photo-slot">
-    <div class="photo-slot">
-      <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <polyline points="21 15 16 10 5 21"/>
-      </svg>
-      <span class="slot-label">Attach photo</span>
-    </div>
-  </div>
-
-  <!-- GALLERY STRIP — 3 portrait photos side by side -->
-  <div class="gallery-strip">
-    <div class="photo-slot">
-      <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <polyline points="21 15 16 10 5 21"/>
-      </svg>
-      <span class="slot-label">Attach photo</span>
-    </div>
-    <div class="photo-slot">
-      <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <polyline points="21 15 16 10 5 21"/>
-      </svg>
-      <span class="slot-label">Attach photo</span>
-    </div>
-    <div class="photo-slot">
-      <svg class="slot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <polyline points="21 15 16 10 5 21"/>
-      </svg>
-      <span class="slot-label">Attach photo</span>
+  <!-- GALLERY CAROUSEL — picture / video / picture / video, looping, 9:16 -->
+  <div class="gallery-strip" id="experience">
+    <div class="gallery-carousel" id="galleryCarousel">
+      <div class="gallery-slide active">
+        <img src="1.jpg" alt="JUNO gallery photo" loading="lazy" />
+      </div>
+      <div class="gallery-slide">
+        <video muted loop playsinline>
+          <source src="Video-491.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gallery-slide">
+        <img src="2.jpg" alt="JUNO gallery photo" loading="lazy" />
+      </div>
+      <div class="gallery-slide">
+        <video muted loop playsinline>
+          <source src="Video-716.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
   </div>
 
@@ -1028,6 +1027,30 @@
       { weekId: 'doha-week',   statusId: 'doha-status',   todayId: 'doha-today-time',   schedule: dohaSchedule },
       { weekId: 'riyadh-week', statusId: 'riyadh-status', todayId: 'riyadh-today-time', schedule: riyadhSchedule },
     ]);
+
+    (() => {
+      const slides = document.querySelectorAll('#galleryCarousel .gallery-slide');
+      let current = 0;
+
+      function goTo(index) {
+        const prevVideo = slides[current].querySelector('video');
+        if (prevVideo) { prevVideo.pause(); prevVideo.currentTime = 0; }
+
+        slides[current].classList.remove('active');
+        current = index % slides.length;
+        slides[current].classList.add('active');
+
+        const nextVideo = slides[current].querySelector('video');
+        if (nextVideo) nextVideo.play();
+      }
+
+      function advance() { goTo(current + 1); }
+
+      const firstVideo = slides[current].querySelector('video');
+      if (firstVideo) firstVideo.play();
+
+      setInterval(advance, 4500);
+    })();
   </script>
 </body>
 </html>
