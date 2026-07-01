@@ -348,6 +348,7 @@
         linear-gradient(rgba(12,11,8,0.6), rgba(12,11,8,0.75)),
         url('3.jpg') center/cover no-repeat;
       padding: 48px 0;
+      scroll-margin-top: 80px;
       display: flex;
       justify-content: center;
     }
@@ -762,9 +763,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE anchor (offset target) -->
-  <div id="experience" style="position:relative;top:-80px;"></div>
-
   <!-- INTRO TEXT -->
   <section class="intro" id="about">
     <div class="intro-inner">
@@ -798,7 +796,7 @@
   </div>
 
   <!-- GALLERY CAROUSEL — picture / video / picture / video, looping, 9:16 -->
-  <div class="gallery-strip">
+  <div class="gallery-strip" id="experience">
     <div class="gallery-carousel" id="galleryCarousel">
       <div class="gallery-slide active">
         <img src="1.jpg" alt="JUNO gallery photo" loading="lazy" />
