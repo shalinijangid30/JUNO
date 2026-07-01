@@ -336,32 +336,29 @@
       margin: 0;
     }
 
-    .reserve-doodle {
-      position: absolute;
-      top: 24px;
-      right: 40px;
-      width: 160px;
-      height: 220px;
+    .reserve-doodle-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
-      opacity: 0.75;
+      z-index: 150;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
-    .reserve-doodle path {
+    .reserve-doodle-overlay.visible { opacity: 0.8; }
+    .reserve-doodle-overlay path {
       fill: none;
       stroke: var(--gold);
-      stroke-width: 1.6;
+      stroke-width: 0.35;
+      vector-effect: non-scaling-stroke;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .reserve-doodle-label {
-      position: absolute;
-      top: 8px;
-      right: 190px;
+    .reserve-doodle-overlay text {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 0.95rem;
-      color: var(--gold);
-      opacity: 0.75;
-      white-space: nowrap;
+      fill: var(--gold);
     }
 
     /* ── FOOTER ──────────────────────────────── */
@@ -783,12 +780,7 @@
   </div><!-- end menu-content -->
 
   <!-- RESERVE CTA -->
-  <div class="reserve-cta">
-    <span class="reserve-doodle-label">reserve here</span>
-    <svg class="reserve-doodle" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 200 C 10 140, 30 90, 70 60 C 100 38, 120 30, 140 18"/>
-      <path d="M118 12 C 127 14, 136 16, 141 19 C 138 24, 133 32, 130 40"/>
-    </svg>
+  <div class="reserve-cta" id="reserveCta">
     <h2>Join us at the table</h2>
   </div>
 
@@ -813,7 +805,24 @@
     </div>
   </footer>
 
+  <!-- DOODLE ARROW: reserve-cta heading → Reserve chip in nav -->
+  <svg class="reserve-doodle-overlay" id="reserveArrow" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 88 C 46 70, 40 55, 42 40 C 44 24, 60 14, 88 7" vector-effect="non-scaling-stroke"/>
+    <path d="M79 5.5 C 83 5.8, 87 6.2, 89.5 7.2 C 88 9.5, 85.5 12.5, 83.5 15" vector-effect="non-scaling-stroke"/>
+    <text x="50" y="82" font-size="3.2" text-anchor="middle">reserve here</text>
+  </svg>
+
   <script>
+    (() => {
+      const overlay = document.getElementById('reserveArrow');
+      const target = document.getElementById('reserveCta');
+      const observer = new IntersectionObserver(
+        ([entry]) => overlay.classList.toggle('visible', entry.isIntersecting),
+        { threshold: 0.25 }
+      );
+      observer.observe(target);
+    })();
+
     function switchTab(id, btn) {
       document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
