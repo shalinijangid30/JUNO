@@ -376,69 +376,6 @@
     }
 
 
-    /* ── LOCATIONS ────────────────────────────── */
-    .locations {
-      background: var(--bg);
-      border-top: 1px solid var(--rule);
-      padding: 96px 56px;
-    }
-    .locations-eyebrow {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.56rem;
-      font-weight: 300;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 72px;
-    }
-    .locations-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      max-width: 1000px;
-      margin: 0 auto;
-      background: var(--rule);
-    }
-    .loc-card {
-      background: var(--bg);
-      padding: 56px 40px;
-      text-align: center;
-      transition: background 0.35s;
-    }
-    .loc-card:hover { background: var(--bg-alt); }
-    .loc-line {
-      width: 1px;
-      height: 40px;
-      background: var(--gold);
-      margin: 0 auto 28px;
-    }
-    .loc-city {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--cream);
-      margin-bottom: 10px;
-    }
-    .loc-country {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.55rem;
-      font-weight: 300;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--cream-dim);
-      margin-bottom: 20px;
-    }
-    .loc-status {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.53rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .loc-status.soon { color: var(--gold-dim); }
-
     /* ── FOOTER ──────────────────────────────── */
     footer {
       background: var(--bg-alt);
@@ -489,185 +426,6 @@
       color: var(--gold-dim);
     }
 
-    /* ── LOCATION DETAIL SECTIONS ───────────── */
-    .location-detail {
-      border-top: 1px solid var(--rule);
-      background: var(--bg-alt);
-    }
-    .location-detail-inner {
-      display: grid;
-      grid-template-columns: 1fr 45%;
-      min-height: 494px;
-    }
-    .location-detail-info {
-      padding: 80px 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .loc-detail-eyebrow {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.53rem;
-      font-weight: 300;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-    }
-    .loc-detail-city {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 5vw, 4.5rem);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .loc-detail-country {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.55rem;
-      font-weight: 300;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--cream-dim);
-      margin-bottom: 40px;
-    }
-    .loc-detail-rule {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      margin-bottom: 32px;
-    }
-    .loc-detail-address {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--cream-dim);
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-    .loc-detail-status {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.53rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .loc-detail-status.soon { color: var(--gold-dim); }
-
-    /* Hours */
-    .loc-hours {
-      margin-top: 28px;
-    }
-    .loc-hours-today {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--cream-dim);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .loc-hours-today .open-badge {
-      color: #6abf69;
-      font-weight: 400;
-    }
-    .loc-hours-today .dot { opacity: 0.4; }
-    .loc-hours-more {
-      background: none;
-      border: none;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-      cursor: pointer;
-      padding: 0;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .loc-hours-week {
-      display: none;
-      margin-top: 16px;
-      border-top: 1px solid var(--rule);
-      padding-top: 16px;
-    }
-    .loc-hours-week.open { display: block; }
-    .loc-hours-row {
-      display: flex;
-      justify-content: space-between;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      color: var(--cream-dim);
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(196,163,90,0.08);
-    }
-    .loc-hours-row:last-child { border-bottom: none; }
-    .loc-hours-row .day { color: var(--cream); min-width: 130px; }
-    .loc-hours-row.today .day,
-    .loc-hours-row.today .time { color: var(--gold); }
-    .location-detail-map {
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-slot);
-      animation: slideInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-    .location-detail-map img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .location-detail-map iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      filter: grayscale(30%) contrast(1.05);
-      display: block;
-    }
-    .map-link {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.56rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cream);
-      text-decoration: none;
-      background: rgba(12,11,8,0.72);
-      backdrop-filter: blur(8px);
-      padding: 10px 18px;
-      white-space: nowrap;
-      border: 1px solid rgba(240,233,220,0.15);
-      transition: background 0.2s, color 0.2s;
-      z-index: 2;
-    }
-    .map-link:hover { background: rgba(12,11,8,0.92); color: var(--gold); }
-    .location-detail-map.coming-soon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-    .location-detail-map.coming-soon p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-    }
-
     /* ── MOBILE ──────────────────────────────── */
     @media (max-width: 900px) {
       nav { padding: 0 20px; height: 60px; grid-template-columns: auto auto auto; }
@@ -696,11 +454,6 @@
       .feature-col { border-right: none; border-bottom: 1px solid var(--rule); }
       .feature-col-head { padding: 36px 28px 28px; }
       .gallery-carousel { max-width: 280px; }
-      .locations { padding: 72px 24px; }
-      .locations-grid { grid-template-columns: 1fr; }
-      .location-detail-inner { grid-template-columns: 1fr; }
-      .location-detail-map { height: 300px; }
-      .location-detail-info { padding: 56px 28px; }
       footer { padding: 56px 24px 32px; }
       .footer-grid { grid-template-columns: 1fr; text-align: center; }
       .footer-logo { order: -1; }
@@ -729,11 +482,11 @@
         <li><a href="index.html#experience">Experience</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li class="nav-dropdown">
-          <a href="index.html#locations">Locations <span class="dropdown-caret">▾</span></a>
+          <a href="locations.html">Locations <span class="dropdown-caret">▾</span></a>
           <div class="nav-dropdown-menu">
-            <a href="#doha"><span>Doha</span><span class="loc-tag">Qatar</span></a>
-            <a href="#riyadh"><span>Riyadh</span><span class="loc-tag">Saudi Arabia</span></a>
-            <a href="#kuwait-city" class="soon-link"><span>Kuwait City</span><span class="loc-tag">Coming Soon</span></a>
+            <a href="locations.html#doha"><span>Doha</span><span class="loc-tag">Qatar</span></a>
+            <a href="locations.html#riyadh"><span>Riyadh</span><span class="loc-tag">Saudi Arabia</span></a>
+            <a href="locations.html#kuwait-city" class="soon-link"><span>Kuwait City</span><span class="loc-tag">Coming Soon</span></a>
           </div>
         </li>
       </ul>
@@ -817,104 +570,6 @@
     </div>
   </div>
 
-  <!-- LOCATION DETAILS -->
-  <section id="doha" class="location-detail">
-    <div class="location-detail-inner">
-      <div class="location-detail-info">
-        <p class="loc-detail-eyebrow">Find Us</p>
-        <h2 class="loc-detail-city">Doha</h2>
-        <p class="loc-detail-country">Qatar</p>
-        <div class="loc-detail-rule"></div>
-        <p class="loc-detail-address">
-          West Walk<br>
-          Alwaab<br>
-          Doha, Qatar
-        </p>
-        <div class="loc-hours" id="hours-doha">
-          <div class="loc-hours-today">
-            <span class="open-badge" id="doha-status"></span>
-            <span class="dot">·</span>
-            <span id="doha-today-time"></span>
-            <span class="dot">·</span>
-            <button class="loc-hours-more" onclick="toggleHours('doha-week')">More hours</button>
-          </div>
-          <div class="loc-hours-week" id="doha-week">
-            <div class="loc-hours-row" data-days="0"><span class="day">Sunday</span><span class="time">12:30 pm – 11:45 pm</span></div>
-            <div class="loc-hours-row" data-days="1"><span class="day">Monday</span><span class="time">12:30 pm – 11:45 pm</span></div>
-            <div class="loc-hours-row" data-days="2"><span class="day">Tuesday</span><span class="time">12:30 pm – 11:45 pm</span></div>
-            <div class="loc-hours-row" data-days="3"><span class="day">Wednesday</span><span class="time">12:30 pm – 11:45 pm</span></div>
-            <div class="loc-hours-row" data-days="4"><span class="day">Thursday</span><span class="time">12:30 pm – 12:00 am</span></div>
-            <div class="loc-hours-row" data-days="5"><span class="day">Friday</span><span class="time">12:30 pm – 12:00 am</span></div>
-            <div class="loc-hours-row" data-days="6"><span class="day">Saturday</span><span class="time">12:30 pm – 12:00 am</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="location-detail-map">
-        <img src="doha-interior.jpg" alt="JUNO Doha interior" loading="lazy" />
-        <a class="map-link" href="https://maps.google.com/maps?q=West+Walk,+Alwaab,+Doha,+Qatar" target="_blank" rel="noopener">View Map</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="riyadh" class="location-detail">
-    <div class="location-detail-inner">
-      <div class="location-detail-info">
-        <p class="loc-detail-eyebrow">Find Us</p>
-        <h2 class="loc-detail-city">Riyadh</h2>
-        <p class="loc-detail-country">Saudi Arabia</p>
-        <div class="loc-detail-rule"></div>
-        <p class="loc-detail-address">
-          Laysen Valley<br>
-          Umm Al Hamam Al Gharbi<br>
-          Riyadh 12329, Saudi Arabia
-        </p>
-        <div class="loc-hours" id="hours-riyadh">
-          <div class="loc-hours-today">
-            <span class="open-badge" id="riyadh-status"></span>
-            <span class="dot">·</span>
-            <span id="riyadh-today-time"></span>
-            <span class="dot">·</span>
-            <button class="loc-hours-more" onclick="toggleHours('riyadh-week')">More hours</button>
-          </div>
-          <div class="loc-hours-week" id="riyadh-week">
-            <div class="loc-hours-row" data-days="0"><span class="day">Sunday</span><span class="time">12:00 pm – 1:00 am</span></div>
-            <div class="loc-hours-row" data-days="1"><span class="day">Monday</span><span class="time">12:00 pm – 1:00 am</span></div>
-            <div class="loc-hours-row" data-days="2"><span class="day">Tuesday</span><span class="time">12:00 pm – 1:00 am</span></div>
-            <div class="loc-hours-row" data-days="3"><span class="day">Wednesday</span><span class="time">12:00 pm – 1:00 am</span></div>
-            <div class="loc-hours-row" data-days="4"><span class="day">Thursday</span><span class="time">12:00 pm – 1:00 am</span></div>
-            <div class="loc-hours-row" data-days="5"><span class="day">Friday</span><span class="time">12:00 pm – 1:00 am</span></div>
-            <div class="loc-hours-row" data-days="6"><span class="day">Saturday</span><span class="time">12:00 pm – 1:00 am</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="location-detail-map">
-        <img src="riyadh-interior.jpg" alt="JUNO Riyadh interior" loading="lazy" />
-        <a class="map-link" href="https://maps.google.com/maps?q=Laysen+Valley,+Umm+Al+Hamam+Al+Gharbi,+Riyadh+12329,+Saudi+Arabia" target="_blank" rel="noopener">View Map</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="kuwait-city" class="location-detail">
-    <div class="location-detail-inner">
-      <div class="location-detail-info">
-        <p class="loc-detail-eyebrow">Opening Soon</p>
-        <h2 class="loc-detail-city">Kuwait City</h2>
-        <p class="loc-detail-country">Kuwait</p>
-        <div class="loc-detail-rule"></div>
-        <p class="loc-detail-address" style="color: var(--gold-dim); font-style: italic;">
-          Location to be announced.
-        </p>
-        <p class="loc-detail-status soon">Coming Soon</p>
-      </div>
-      <div class="location-detail-map coming-soon">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(196,163,90,0.2)" stroke-width="1.2">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-        <p>Coming Soon</p>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
@@ -935,7 +590,7 @@
       <div class="footer-col-right">
         <a href="menu.html">Menu</a>
         <a href="index.html#about">About</a>
-        <a href="index.html#locations">Locations</a>
+        <a href="locations.html">Locations</a>
         <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener">Reserve</a>
       </div>
     </div>
@@ -953,80 +608,6 @@
     function toggleNav() {
       document.getElementById('navCenter').classList.toggle('open');
     }
-
-    function toggleHours(id) {
-      document.getElementById(id).classList.toggle('open');
-    }
-
-    function initHours(config) {
-      const now = new Date();
-      const day = now.getDay(); // 0=Sun … 6=Sat
-      const h = now.getHours();
-      const m = now.getMinutes();
-      const mins = h * 60 + m;
-
-      config.forEach(({ weekId, statusId, todayId, schedule }) => {
-        // Highlight today's row
-        const rows = document.querySelectorAll(`#${weekId} .loc-hours-row`);
-        rows.forEach(row => {
-          if (parseInt(row.dataset.days) === day) row.classList.add('today');
-        });
-
-        // Determine open/closed
-        const { open, close, crossMidnight } = schedule[day];
-        // open/close in minutes since midnight; crossMidnight means close is next day
-        let isOpen;
-        if (crossMidnight) {
-          isOpen = mins >= open || mins < close;
-        } else {
-          isOpen = mins >= open && mins < close;
-        }
-
-        const statusEl = document.getElementById(statusId);
-        const todayEl  = document.getElementById(todayId);
-
-        if (isOpen) {
-          statusEl.textContent = 'Open';
-          statusEl.style.color = '#6abf69';
-          // Show closing time
-          const closeH = Math.floor(close / 60) % 24;
-          const closeM = close % 60;
-          const period = closeH >= 12 ? 'pm' : 'am';
-          const displayH = closeH % 12 || 12;
-          const displayM = closeM ? `:${String(closeM).padStart(2,'0')}` : '';
-          todayEl.textContent = `Closes ${displayH}${displayM} ${period}`;
-        } else {
-          statusEl.textContent = 'Closed';
-          statusEl.style.color = '#c0555a';
-          // Show opening time
-          const openH = Math.floor(open / 60);
-          const openM = open % 60;
-          const period = openH >= 12 ? 'pm' : 'am';
-          const displayH = openH % 12 || 12;
-          const displayM = openM ? `:${String(openM).padStart(2,'0')}` : '';
-          todayEl.textContent = `Opens ${displayH}${displayM} ${period}`;
-        }
-      });
-    }
-
-    // Schedule: open & close in minutes since midnight; crossMidnight=true when close wraps past midnight
-    // Doha: Sun–Wed 12:30–23:45, Thu–Sat 12:30–00:00 (midnight)
-    const dohaSchedule = [
-      { open: 750, close: 1425, crossMidnight: false }, // Sun  12:30–23:45
-      { open: 750, close: 1425, crossMidnight: false }, // Mon
-      { open: 750, close: 1425, crossMidnight: false }, // Tue
-      { open: 750, close: 1425, crossMidnight: false }, // Wed
-      { open: 750, close:    0, crossMidnight: true  }, // Thu  12:30–midnight
-      { open: 750, close:    0, crossMidnight: true  }, // Fri
-      { open: 750, close:    0, crossMidnight: true  }, // Sat
-    ];
-    // Riyadh: daily 12:00–01:00 next day
-    const riyadhSchedule = Array(7).fill({ open: 720, close: 60, crossMidnight: true });
-
-    initHours([
-      { weekId: 'doha-week',   statusId: 'doha-status',   todayId: 'doha-today-time',   schedule: dohaSchedule },
-      { weekId: 'riyadh-week', statusId: 'riyadh-status', todayId: 'riyadh-today-time', schedule: riyadhSchedule },
-    ]);
 
     (() => {
       const slides = document.querySelectorAll('#galleryCarousel .gallery-slide');
