@@ -151,11 +151,15 @@
 
     /* ── PAGE HERO ────────────────────────────── */
     .page-hero {
-      padding: 180px 56px 0;
+      padding: 0 56px;
+      min-height: 80vh;
       text-align: center;
       border-bottom: 1px solid var(--rule);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
     .page-hero::before {
@@ -215,7 +219,7 @@
       display: flex;
       justify-content: center;
       gap: 0;
-      margin-top: 60px;
+      margin-bottom: 40px;
     }
 
     .tab-btn {
