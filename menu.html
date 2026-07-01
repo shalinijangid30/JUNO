@@ -151,7 +151,7 @@
 
     /* ── PAGE HERO ────────────────────────────── */
     .page-hero {
-      padding: 180px 56px 100px;
+      padding: 180px 56px 0;
       text-align: center;
       border-bottom: 1px solid var(--rule);
       position: relative;
@@ -215,11 +215,7 @@
       display: flex;
       justify-content: center;
       gap: 0;
-      border-bottom: 1px solid var(--rule);
-      background: var(--bg-alt);
-      position: sticky;
-      top: 72px;
-      z-index: 50;
+      margin-top: 60px;
     }
 
     .tab-btn {
@@ -490,15 +486,14 @@
     </video>
     <p class="page-hero-label">juno</p>
     <h1>The Menu</h1>
-    <p>Seasonally inspired, meticulously crafted — a reflection of our commitment to the finest ingredients and timeless technique.</p>
-  </div>
 
-  <!-- TAB NAV -->
-  <div class="menu-tabs">
-    <button class="tab-btn active" onclick="switchTab('starters', this)">Starters</button>
-    <button class="tab-btn" onclick="switchTab('mains', this)">Mains</button>
-    <button class="tab-btn" onclick="switchTab('desserts', this)">Desserts</button>
-    <button class="tab-btn" onclick="switchTab('beverages', this)">Beverages</button>
+    <!-- TAB NAV -->
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="switchTab('starters', this)">Starters</button>
+      <button class="tab-btn" onclick="switchTab('mains', this)">Mains</button>
+      <button class="tab-btn" onclick="switchTab('desserts', this)">Desserts</button>
+      <button class="tab-btn" onclick="switchTab('beverages', this)">Beverages</button>
+    </div>
   </div>
 
   <!-- MENU CONTENT -->
