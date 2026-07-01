@@ -805,22 +805,19 @@
     </div>
   </footer>
 
-  <!-- DOODLE ARROW: reserve-cta heading → Reserve chip in nav -->
+  <!-- DOODLE ARROW: Reserve chip in nav → reserve-cta heading -->
   <svg class="reserve-doodle-overlay" id="reserveArrow" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M50 88 C 46 70, 40 55, 42 40 C 44 24, 60 14, 88 7" vector-effect="non-scaling-stroke"/>
-    <path d="M79 5.5 C 83 5.8, 87 6.2, 89.5 7.2 C 88 9.5, 85.5 12.5, 83.5 15" vector-effect="non-scaling-stroke"/>
-    <text x="50" y="82" font-size="3.2" text-anchor="middle">reserve here</text>
+    <path d="M88 7 C 60 14, 44 24, 42 40 C 40 55, 46 70, 50 88" vector-effect="non-scaling-stroke"/>
+    <path d="M44 78 L 50 88 L 58 80" vector-effect="non-scaling-stroke"/>
+    <text x="83" y="4.5" font-size="3.2" text-anchor="middle">reserve</text>
   </svg>
 
   <script>
     (() => {
       const overlay = document.getElementById('reserveArrow');
-      const target = document.getElementById('reserveCta');
-      const observer = new IntersectionObserver(
-        ([entry]) => overlay.classList.toggle('visible', entry.isIntersecting),
-        { threshold: 0.25 }
-      );
-      observer.observe(target);
+      const panel = document.getElementById('reserveCta');
+      panel.addEventListener('mouseenter', () => overlay.classList.add('visible'));
+      panel.addEventListener('mouseleave', () => overlay.classList.remove('visible'));
     })();
 
     function switchTab(id, btn) {
