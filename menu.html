@@ -321,25 +321,10 @@
     .reserve-cta {
       background: var(--bg-alt);
       border-top: 1px solid var(--rule);
-      padding: 100px 56px;
+      padding: 120px 56px;
       text-align: center;
-    }
-
-    .reserve-cta .section-rule {
-      width: 48px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto 28px;
-    }
-
-    .reserve-cta p.label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 300;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
     }
 
     .reserve-cta h2 {
@@ -347,36 +332,37 @@
       font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 300;
       font-style: italic;
-      color: var(--cream);
-      margin-bottom: 16px;
+      color: var(--gold);
+      margin: 0;
     }
 
-    .reserve-cta p.body {
+    .reserve-doodle {
+      position: absolute;
+      top: 24px;
+      right: 40px;
+      width: 160px;
+      height: 220px;
+      pointer-events: none;
+      opacity: 0.75;
+    }
+    .reserve-doodle path {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .reserve-doodle-label {
+      position: absolute;
+      top: 8px;
+      right: 190px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--cream-dim);
-      margin-bottom: 48px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.8;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--gold);
+      opacity: 0.75;
+      white-space: nowrap;
     }
-
-    .btn-gold {
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--gold);
-      padding: 16px 48px;
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn-gold:hover { background: var(--cream); }
 
     /* ── FOOTER ──────────────────────────────── */
     footer {
@@ -798,11 +784,12 @@
 
   <!-- RESERVE CTA -->
   <div class="reserve-cta">
-    <div class="section-rule"></div>
-    <p class="label">Reservations</p>
+    <span class="reserve-doodle-label">reserve here</span>
+    <svg class="reserve-doodle" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 200 C 10 140, 30 90, 70 60 C 100 38, 120 30, 140 18"/>
+      <path d="M118 12 C 127 14, 136 16, 141 19 C 138 24, 133 32, 130 40"/>
+    </svg>
     <h2>Join us at the table</h2>
-    <p class="body">We look forward to welcoming you. Reserve your table at juno Riyadh through our booking partner.</p>
-    <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="btn-gold">Reserve a Table</a>
   </div>
 
   <!-- FOOTER -->
