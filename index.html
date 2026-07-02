@@ -420,33 +420,78 @@
       border-top: 1px solid var(--rule);
       padding: 72px 56px 40px;
     }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
+    .footer-signup {
       max-width: 1100px;
       margin: 0 auto 56px;
-      gap: 32px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
     }
-    .footer-col-left { }
-    .footer-col-left a,
-    .footer-col-right a {
+    .footer-signup h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+    .footer-signup > p {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.57rem;
       font-weight: 300;
-      letter-spacing: 0.25em;
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      margin-bottom: 44px;
+    }
+    .footer-signup-form {
+      display: flex;
+      align-items: flex-end;
+      gap: 40px;
+    }
+    .footer-signup-field { flex: 1; }
+    .footer-signup-field label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--cream-dim);
-      text-decoration: none;
-      display: block;
       margin-bottom: 14px;
-      transition: color 0.3s;
     }
-    .footer-col-left a:hover,
-    .footer-col-right a:hover { color: var(--gold); }
-    .footer-logo { text-align: center; }
-    .footer-logo svg { height: 60px; width: auto; }
-    .footer-col-right { text-align: right; }
+    .footer-signup-field input {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 6px 0 12px;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+    }
+    .footer-signup-field input::placeholder { color: var(--gold-dim); }
+    .footer-signup-field input:focus { outline: none; border-bottom-color: var(--gold); }
+    .footer-signup-btn {
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      padding: 17px 42px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.3s, color 0.3s;
+    }
+    .footer-signup-btn:hover { background: var(--cream); }
+    .footer-signup-note {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      color: var(--gold-dim);
+      margin-top: 12px;
+      min-height: 14px;
+    }
     .footer-bottom {
       max-width: 1100px;
       margin: 0 auto;
@@ -493,9 +538,8 @@
       .feature-col-head { padding: 36px 28px 28px; }
       .gallery-carousel { max-width: 280px; }
       footer { padding: 56px 24px 32px; }
-      .footer-grid { grid-template-columns: 1fr; text-align: center; }
-      .footer-logo { order: -1; }
-      .footer-col-right { text-align: center; }
+      .footer-signup-form { flex-direction: column; align-items: stretch; gap: 24px; }
+      .footer-signup-btn { width: 100%; }
     }
   </style>
 </head>
@@ -606,27 +650,17 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-grid">
-      <div class="footer-col-left">
-        <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener" data-i18n-en="Instagram" data-i18n-ar="إنستغرام">Instagram</a>
-      </div>
-      <div class="footer-logo">
-        <svg viewBox="0 0 680 285" xmlns="http://www.w3.org/2000/svg" aria-label="JUNO">
-          <text x="125" y="220"
-                font-family="'Archivo', 'Arial Black', sans-serif"
-                font-weight="900"
-                font-size="210"
-                letter-spacing="-4"
-                fill="currentColor"
-                transform="skewX(-22)">JUNO</text>
-        </svg>
-      </div>
-      <div class="footer-col-right">
-        <a href="menu.html" data-i18n-en="Menu" data-i18n-ar="القائمة">Menu</a>
-        <a href="index.html#about" data-i18n-en="About" data-i18n-ar="من نحن">About</a>
-        <a href="locations.html" data-i18n-en="Locations" data-i18n-ar="الفروع">Locations</a>
-        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" data-i18n-en="Reserve" data-i18n-ar="احجز">Reserve</a>
-      </div>
+    <div class="footer-signup">
+      <h2 data-i18n-en="Sign up for special events and big news" data-i18n-ar="اشترك للحصول على أحدث الفعاليات والأخبار">Sign up for special events and big news</h2>
+      <p data-i18n-en="Skip to the front of the line and stay up-to-date on the latest." data-i18n-ar="كن أول من يعلم وابقَ على اطلاع بآخر المستجدات.">Skip to the front of the line and stay up-to-date on the latest.</p>
+      <form class="footer-signup-form" id="signupForm">
+        <div class="footer-signup-field">
+          <label for="signupEmail" data-i18n-en="Email Address" data-i18n-ar="البريد الإلكتروني">Email Address</label>
+          <input type="email" id="signupEmail" name="email" required autocomplete="email" />
+          <p class="footer-signup-note" id="signupNote"></p>
+        </div>
+        <button type="submit" class="footer-signup-btn" data-i18n-en="I Want In" data-i18n-ar="اشتركني">I Want In</button>
+      </form>
     </div>
     <div class="footer-bottom">
       <p data-i18n-en="© 2025 juno. All rights reserved." data-i18n-ar="© 2025 جونو. جميع الحقوق محفوظة.">&copy; 2025 juno. All rights reserved.</p>
@@ -642,6 +676,17 @@
 
     function toggleNav() {
       document.getElementById('navCenter').classList.toggle('open');
+    }
+
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+      signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const note = document.getElementById('signupNote');
+        const isAr = document.documentElement.getAttribute('lang') === 'ar';
+        note.textContent = isAr ? 'شكرًا لانضمامك!' : 'Thank you — you\'re on the list.';
+        signupForm.reset();
+      });
     }
 
     function applyLang(lang) {
