@@ -51,6 +51,12 @@
       backdrop-filter: blur(12px);
     }
 
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
     .nav-logo {
       color: var(--cream);
       text-decoration: none;
@@ -64,6 +70,21 @@
       letter-spacing: 0.02em;
       color: var(--cream);
     }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+    }
+    .lang-option { color: var(--cream-dim); transition: color 0.3s; }
+    .lang-option.active { color: var(--gold); }
+    .lang-divider { color: var(--gold-dim); opacity: 0.5; font-size: 0.55rem; }
 
     .nav-center {
       display: flex;
@@ -463,20 +484,27 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="index.html" class="nav-logo" aria-label="JUNO">
-      <span class="nav-logo-text">JUNO</span>
-    </a>
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo" aria-label="JUNO">
+        <span class="nav-logo-text">JUNO</span>
+      </a>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Toggle language">
+        <span class="lang-option active" data-lang="en">EN</span>
+        <span class="lang-divider">/</span>
+        <span class="lang-option" data-lang="ar">AR</span>
+      </button>
+    </div>
     <div class="nav-center" id="navCenter">
       <ul class="nav-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="menu.html">Menu</a></li>
+        <li><a href="index.html#about" data-i18n-en="About" data-i18n-ar="من نحن">About</a></li>
+        <li><a href="index.html#experience" data-i18n-en="Experience" data-i18n-ar="التجربة">Experience</a></li>
+        <li><a href="menu.html" data-i18n-en="Menu" data-i18n-ar="القائمة">Menu</a></li>
         <li class="nav-dropdown">
-          <a href="locations.html" class="active">Locations <span class="dropdown-caret">▾</span></a>
+          <a href="locations.html" class="active"><span data-i18n-en="Locations" data-i18n-ar="الفروع">Locations</span> <span class="dropdown-caret">▾</span></a>
           <div class="nav-dropdown-menu">
-            <a href="#doha"><span>Doha</span><span class="loc-tag">Qatar</span></a>
-            <a href="#riyadh"><span>Riyadh</span><span class="loc-tag">Saudi Arabia</span></a>
-            <a href="#kuwait-city" class="soon-link"><span>Kuwait City</span><span class="loc-tag">Coming Soon</span></a>
+            <a href="#doha"><span data-i18n-en="Doha" data-i18n-ar="الدوحة">Doha</span><span class="loc-tag" data-i18n-en="Qatar" data-i18n-ar="قطر">Qatar</span></a>
+            <a href="#riyadh"><span data-i18n-en="Riyadh" data-i18n-ar="الرياض">Riyadh</span><span class="loc-tag" data-i18n-en="Saudi Arabia" data-i18n-ar="السعودية">Saudi Arabia</span></a>
+            <a href="#kuwait-city" class="soon-link"><span data-i18n-en="Kuwait City" data-i18n-ar="مدينة الكويت">Kuwait City</span><span class="loc-tag" data-i18n-en="Coming Soon" data-i18n-ar="قريبًا">Coming Soon</span></a>
           </div>
         </li>
       </ul>
@@ -490,7 +518,7 @@
         </svg>
       </a>
       <div class="nav-reserve">
-        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener">Reserve</a>
+        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" data-i18n-en="Reserve" data-i18n-ar="احجز">Reserve</a>
       </div>
     </div>
     <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
@@ -500,7 +528,7 @@
 
   <!-- PAGE HERO -->
   <div class="page-hero">
-    <p class="page-hero-cities">Doha &nbsp;·&nbsp; Riyadh &nbsp;·&nbsp; Kuwait City</p>
+    <p class="page-hero-cities" data-i18n-en="Doha  ·  Riyadh  ·  Kuwait City" data-i18n-ar="الدوحة · الرياض · مدينة الكويت">Doha &nbsp;·&nbsp; Riyadh &nbsp;·&nbsp; Kuwait City</p>
   </div>
 
   <!-- LOCATION DETAILS -->
@@ -605,7 +633,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-col-left">
-        <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener" data-i18n-en="Instagram" data-i18n-ar="إنستغرام">Instagram</a>
       </div>
       <div class="footer-logo">
         <svg viewBox="0 0 680 285" xmlns="http://www.w3.org/2000/svg" aria-label="JUNO">
@@ -619,15 +647,15 @@
         </svg>
       </div>
       <div class="footer-col-right">
-        <a href="menu.html">Menu</a>
-        <a href="index.html#about">About</a>
-        <a href="locations.html">Locations</a>
-        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener">Reserve</a>
+        <a href="menu.html" data-i18n-en="Menu" data-i18n-ar="القائمة">Menu</a>
+        <a href="index.html#about" data-i18n-en="About" data-i18n-ar="من نحن">About</a>
+        <a href="locations.html" data-i18n-en="Locations" data-i18n-ar="الفروع">Locations</a>
+        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" data-i18n-en="Reserve" data-i18n-ar="احجز">Reserve</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 juno. All rights reserved.</p>
-      <p>Doha &middot; Riyadh &middot; Kuwait City</p>
+      <p data-i18n-en="© 2025 juno. All rights reserved." data-i18n-ar="© 2025 جونو. جميع الحقوق محفوظة.">&copy; 2025 juno. All rights reserved.</p>
+      <p data-i18n-en="Doha · Riyadh · Kuwait City" data-i18n-ar="الدوحة · الرياض · مدينة الكويت">Doha &middot; Riyadh &middot; Kuwait City</p>
     </div>
   </footer>
 
@@ -705,6 +733,24 @@
       { weekId: 'doha-week',   statusId: 'doha-status',   todayId: 'doha-today-time',   schedule: dohaSchedule },
       { weekId: 'riyadh-week', statusId: 'riyadh-status', todayId: 'riyadh-today-time', schedule: riyadhSchedule },
     ]);
+
+    function applyLang(lang) {
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('[data-i18n-en]').forEach(el => {
+        el.textContent = lang === 'ar' ? el.dataset.i18nAr : el.dataset.i18nEn;
+      });
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.lang === lang);
+      });
+      localStorage.setItem('junoLang', lang);
+    }
+
+    function toggleLang() {
+      const current = document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en';
+      applyLang(current === 'en' ? 'ar' : 'en');
+    }
+
+    applyLang(localStorage.getItem('junoLang') || 'en');
   </script>
 </body>
 </html>
