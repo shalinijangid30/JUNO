@@ -356,7 +356,7 @@
     .feature-col:hover .feature-col-head { background: rgba(196,163,90,0.04); }
     .feature-col-title {
       font-family: 'JunoSlant', sans-serif;
-      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-size: clamp(1.6rem, 3vw, 2.72rem);
       font-weight: 400;
       font-style: normal;
       line-height: 1;
@@ -364,7 +364,7 @@
       transition: color 0.3s;
     }
     .feature-col:hover .feature-col-title { color: var(--gold); }
-    .dance-menu .letter {
+    .dance-letters .letter {
       display: inline-block;
       animation: letterDance 1.1s ease-in-out infinite;
     }
@@ -615,7 +615,7 @@
     <div class="feature-row">
       <a href="menu.html" class="feature-col">
         <div class="feature-col-head">
-          <span class="feature-col-title dance-menu" id="danceMenu" data-i18n-en="Menu" data-i18n-ar="القائمة"><span class="letter" style="animation-delay:0s">M</span><span class="letter" style="animation-delay:0.1s">e</span><span class="letter" style="animation-delay:0.2s">n</span><span class="letter" style="animation-delay:0.3s">u</span></span>
+          <span class="feature-col-title dance-letters" id="danceMenu" data-i18n-en="Menu" data-i18n-ar="القائمة"><span class="letter" style="animation-delay:0s">M</span><span class="letter" style="animation-delay:0.1s">e</span><span class="letter" style="animation-delay:0.2s">n</span><span class="letter" style="animation-delay:0.3s">u</span></span>
           <span class="feature-col-arrow" data-i18n-en="View →" data-i18n-ar="عرض ←">View &rarr;</span>
         </div>
         <div class="photo-slot filled">
@@ -624,7 +624,7 @@
       </a>
       <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="feature-col">
         <div class="feature-col-head">
-          <span class="feature-col-title" data-i18n-en="Reserve" data-i18n-ar="الحجز">Reserve</span>
+          <span class="feature-col-title dance-letters" id="danceReserve" data-i18n-en="Reserve" data-i18n-ar="الحجز"><span class="letter" style="animation-delay:0s">R</span><span class="letter" style="animation-delay:0.1s">e</span><span class="letter" style="animation-delay:0.2s">s</span><span class="letter" style="animation-delay:0.3s">e</span><span class="letter" style="animation-delay:0.4s">r</span><span class="letter" style="animation-delay:0.5s">v</span><span class="letter" style="animation-delay:0.6s">e</span></span>
           <span class="feature-col-arrow" data-i18n-en="Book →" data-i18n-ar="احجز ←">Book &rarr;</span>
         </div>
         <div class="photo-slot filled">
@@ -699,11 +699,10 @@
 
     function applyLang(lang) {
       document.documentElement.setAttribute('lang', lang);
-      document.querySelectorAll('[data-i18n-en]:not(.dance-menu)').forEach(el => {
+      document.querySelectorAll('[data-i18n-en]:not(.dance-letters)').forEach(el => {
         el.textContent = lang === 'ar' ? el.dataset.i18nAr : el.dataset.i18nEn;
       });
-      const danceEl = document.getElementById('danceMenu');
-      if (danceEl) {
+      document.querySelectorAll('.dance-letters').forEach(danceEl => {
         if (lang === 'ar') {
           danceEl.textContent = danceEl.dataset.i18nAr;
         } else {
@@ -711,7 +710,7 @@
             `<span class="letter" style="animation-delay:${(i * 0.1).toFixed(1)}s">${ch}</span>`
           ).join('');
         }
-      }
+      });
       document.querySelectorAll('[data-i18n-placeholder-en]').forEach(el => {
         el.placeholder = lang === 'ar' ? el.dataset.i18nPlaceholderAr : el.dataset.i18nPlaceholderEn;
       });
