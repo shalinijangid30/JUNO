@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,900;1,700;1,800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600;1,700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'JunoSlant';
+      src: url('JunoSlant-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -39,20 +46,60 @@
       grid-template-columns: auto 1fr auto;
       align-items: center;
       padding: 0 48px;
-      height: 72px;
+      height: 88px;
+      background: transparent;
+      backdrop-filter: blur(0px);
+      box-shadow: none;
+      transition: height 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    nav.scrolled {
+      height: 68px;
       background: rgba(12,11,8,0.94);
       backdrop-filter: blur(12px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
     }
+    nav.scrolled .nav-logo svg { height: 28px; }
 
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
     .nav-logo {
       color: var(--cream);
       text-decoration: none;
       flex-shrink: 0;
-      transform: rotate(-45deg);
       display: inline-block;
       line-height: 0;
     }
-    .nav-logo svg { height: 34px; width: auto; display: block; }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+    }
+    .lang-option {
+      color: var(--cream-dim);
+      transition: color 0.3s;
+    }
+    .lang-option.active { color: var(--gold); }
+    .lang-divider { color: var(--gold-dim); opacity: 0.5; font-size: 0.55rem; }
+    .rtl-text { direction: rtl; text-align: center; }
+    .nav-logo-text {
+      font-family: 'JunoSlant', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      transition: font-size 0.4s ease;
+    }
+    nav.scrolled .nav-logo-text { font-size: 1.5rem; }
 
     .nav-center {
       display: flex;
@@ -75,7 +122,7 @@
       color: var(--cream-dim);
       text-decoration: none;
       padding: 0 26px;
-      height: 72px;
+      height: 100%;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -95,7 +142,7 @@
     .nav-dropdown:hover .dropdown-caret { transform: rotate(180deg); }
     .nav-dropdown-menu {
       position: absolute;
-      top: 72px;
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(14,13,10,0.97);
@@ -192,13 +239,17 @@
         url('hero.png') center/cover no-repeat;
     }
 
-    /* ── INTRO ────────────────────────────────── */
-    .intro {
+    /* ── STORY + FEATURE SHARED BACKGROUND ────── */
+    .story-feature-wrap {
+      position: relative;
       background:
         linear-gradient(rgba(12,11,8,0.82), rgba(12,11,8,0.88)),
         url('3.jpg') center/cover no-repeat;
+    }
+
+    /* ── INTRO ────────────────────────────────── */
+    .intro {
       padding: 96px 40px;
-      border-top: 1px solid var(--rule);
     }
     .intro-inner {
       max-width: 720px;
@@ -224,7 +275,14 @@
       line-height: 1.9;
       color: var(--cream-dim);
     }
-    .intro-text strong { font-weight: 600; color: var(--cream); font-style: normal; }
+    .intro-text strong {
+      font-family: 'JunoSlant', sans-serif;
+      font-weight: 400;
+      font-size: 1.3em;
+      color: var(--cream);
+      font-style: normal;
+      text-transform: uppercase;
+    }
     .intro-text em { font-style: italic; color: var(--cream); }
 
     /* ── PHOTO SLOT ───────────────────────────── */
@@ -280,13 +338,11 @@
     .feature-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--rule);
     }
     .feature-col {
       display: block;
       text-decoration: none;
       color: var(--cream);
-      border-right: 1px solid var(--rule);
       overflow: hidden;
     }
     .feature-col:last-child { border-right: none; }
@@ -299,11 +355,12 @@
     }
     .feature-col:hover .feature-col-head { background: rgba(196,163,90,0.04); }
     .feature-col-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 6vw, 5.5rem);
-      font-weight: 300;
-      font-style: italic;
+      font-family: 'JunoSlant', sans-serif;
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-weight: 400;
+      font-style: normal;
       line-height: 1;
+      text-transform: uppercase;
       transition: color 0.3s;
     }
     .feature-col:hover .feature-col-title { color: var(--gold); }
@@ -362,37 +419,80 @@
       border-top: 1px solid var(--rule);
       padding: 72px 56px 40px;
     }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
+    .footer-signup {
       max-width: 1100px;
       margin: 0 auto 56px;
-      gap: 32px;
+      padding-bottom: 40px;
     }
-    .footer-col-left { }
-    .footer-col-left a,
-    .footer-col-right a {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.57rem;
-      font-weight: 300;
-      letter-spacing: 0.25em;
+    .footer-signup h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
-      color: var(--cream-dim);
-      text-decoration: none;
-      display: block;
+      color: var(--cream);
       margin-bottom: 14px;
-      transition: color 0.3s;
     }
-    .footer-col-left a:hover,
-    .footer-col-right a:hover { color: var(--gold); }
-    .footer-logo { text-align: center; }
-    .footer-logo svg { height: 60px; width: auto; }
-    .footer-col-right { text-align: right; }
+    .footer-signup > p {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      margin-bottom: 44px;
+    }
+    .footer-signup-form {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .footer-signup-field { flex: 1; }
+    .footer-signup-field label {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .footer-signup-field input {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 6px 0 12px;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+    }
+    .footer-signup-field input::placeholder { color: var(--gold-dim); }
+    .footer-signup-field input:focus { outline: none; border-bottom-color: var(--gold); }
+    .footer-signup-btn {
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      padding: 17px 42px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.3s, color 0.3s;
+    }
+    .footer-signup-btn:hover { background: var(--cream); }
+    .footer-signup-note {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      color: var(--gold-dim);
+      margin-top: 12px;
+      min-height: 14px;
+    }
     .footer-bottom {
       max-width: 1100px;
       margin: 0 auto;
-      border-top: 1px solid var(--rule);
       padding-top: 24px;
       display: flex;
       justify-content: space-between;
@@ -435,9 +535,8 @@
       .feature-col-head { padding: 36px 28px 28px; }
       .gallery-carousel { max-width: 280px; }
       footer { padding: 56px 24px 32px; }
-      .footer-grid { grid-template-columns: 1fr; text-align: center; }
-      .footer-logo { order: -1; }
-      .footer-col-right { text-align: center; }
+      .footer-signup-form { flex-direction: column; align-items: stretch; gap: 24px; }
+      .footer-signup-btn { width: 100%; }
     }
   </style>
 </head>
@@ -445,28 +544,27 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="index.html" class="nav-logo" aria-label="JUNO">
-      <svg viewBox="0 0 680 285" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <text x="125" y="220"
-              font-family="'Archivo', 'Arial Black', sans-serif"
-              font-weight="900"
-              font-size="210"
-              letter-spacing="-4"
-              fill="currentColor"
-              transform="skewX(-22)">JUNO</text>
-      </svg>
-    </a>
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo" aria-label="JUNO">
+        <span class="nav-logo-text">JUNO</span>
+      </a>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Toggle language">
+        <span class="lang-option active" data-lang="en">EN</span>
+        <span class="lang-divider">/</span>
+        <span class="lang-option" data-lang="ar">AR</span>
+      </button>
+    </div>
     <div class="nav-center" id="navCenter">
       <ul class="nav-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="menu.html">Menu</a></li>
+        <li><a href="index.html#about" data-i18n-en="About" data-i18n-ar="من نحن">About</a></li>
+        <li><a href="index.html#experience" data-i18n-en="Experience" data-i18n-ar="التجربة">Experience</a></li>
+        <li><a href="menu.html" data-i18n-en="Menu" data-i18n-ar="القائمة">Menu</a></li>
         <li class="nav-dropdown">
-          <a href="locations.html">Locations <span class="dropdown-caret">▾</span></a>
+          <a href="locations.html"><span data-i18n-en="Locations" data-i18n-ar="الفروع">Locations</span> <span class="dropdown-caret">▾</span></a>
           <div class="nav-dropdown-menu">
-            <a href="locations.html#doha"><span>Doha</span><span class="loc-tag">Qatar</span></a>
-            <a href="locations.html#riyadh"><span>Riyadh</span><span class="loc-tag">Saudi Arabia</span></a>
-            <a href="locations.html#kuwait-city" class="soon-link"><span>Kuwait City</span><span class="loc-tag">Coming Soon</span></a>
+            <a href="locations.html#doha"><span data-i18n-en="Doha" data-i18n-ar="الدوحة">Doha</span><span class="loc-tag" data-i18n-en="Qatar" data-i18n-ar="قطر">Qatar</span></a>
+            <a href="locations.html#riyadh"><span data-i18n-en="Riyadh" data-i18n-ar="الرياض">Riyadh</span><span class="loc-tag" data-i18n-en="Saudi Arabia" data-i18n-ar="السعودية">Saudi Arabia</span></a>
+            <a href="locations.html#kuwait-city" class="soon-link"><span data-i18n-en="Kuwait City" data-i18n-ar="مدينة الكويت">Kuwait City</span><span class="loc-tag" data-i18n-en="Coming Soon" data-i18n-ar="قريبًا">Coming Soon</span></a>
           </div>
         </li>
       </ul>
@@ -480,7 +578,7 @@
         </svg>
       </a>
       <div class="nav-reserve">
-        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener">Reserve</a>
+        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" data-i18n-en="Reserve" data-i18n-ar="احجز">Reserve</a>
       </div>
     </div>
     <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
@@ -493,36 +591,39 @@
     <div class="hero-bg"></div>
   </section>
 
-  <!-- INTRO TEXT -->
-  <section class="intro" id="about">
-    <div class="intro-inner">
-      <span class="intro-eyebrow">Our Story</span>
-      <p class="intro-text">
-        <strong>Juno</strong> is a destination defined by the art of gathering — where considered cuisine, gracious hospitality, and a refined atmosphere converge. Born from a passion for elevated dining, juno brings together seasonal ingredients, precise technique, and warm, intuitive service across its homes, with more locations arriving soon.
-      </p>
-    </div>
-  </section>
+  <!-- OUR STORY + FEATURE ROW — shared 3.jpg background -->
+  <div class="story-feature-wrap">
+    <!-- INTRO TEXT -->
+    <section class="intro" id="about">
+      <div class="intro-inner">
+        <span class="intro-eyebrow" data-i18n-en="Our Story" data-i18n-ar="قصتنا">Our Story</span>
+        <p class="intro-text" id="storyText">
+          <strong>Juno</strong> <span data-i18n-en="celebrates the art of gathering. We bring together considered cuisine, precise technique, and gracious hospitality in a refined atmosphere. Discover elevated dining and warm, intuitive service at our current homes with more destinations arriving soon." data-i18n-ar="تحتفي بفن الاجتماع. نجمع بين المأكولات المدروسة، والتقنية الدقيقة، والضيافة الكريمة في أجواء راقية. اكتشف تجربة طعام استثنائية وخدمة دافئة وحدسية في فروعنا الحالية، مع وجهات جديدة قريبًا.">celebrates the art of gathering. We bring together considered cuisine, precise technique, and gracious hospitality in a refined atmosphere. Discover elevated dining and warm, intuitive service at our current homes with more destinations arriving soon.</span>
+        </p>
+      </div>
+    </section>
 
-  <!-- FEATURE ROW — Menu / Reserve -->
-  <div class="feature-row">
-    <a href="menu.html" class="feature-col">
-      <div class="feature-col-head">
-        <span class="feature-col-title">Menu</span>
-        <span class="feature-col-arrow">View &rarr;</span>
-      </div>
-      <div class="photo-slot filled">
-        <img src="menu.jpg" alt="JUNO menu dish" loading="lazy" />
-      </div>
-    </a>
-    <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="feature-col">
-      <div class="feature-col-head">
-        <span class="feature-col-title">Reserve</span>
-        <span class="feature-col-arrow">Book &rarr;</span>
-      </div>
-      <div class="photo-slot filled">
-        <img src="reserve.jpg" alt="JUNO restaurant interior" loading="lazy" />
-      </div>
-    </a>
+    <!-- FEATURE ROW — Menu / Reserve -->
+    <div class="feature-row">
+      <a href="menu.html" class="feature-col">
+        <div class="feature-col-head">
+          <span class="feature-col-title" data-i18n-en="Menu" data-i18n-ar="القائمة">Menu</span>
+          <span class="feature-col-arrow" data-i18n-en="View →" data-i18n-ar="عرض ←">View &rarr;</span>
+        </div>
+        <div class="photo-slot filled">
+          <img src="menu.jpg" alt="JUNO menu dish" loading="lazy" />
+        </div>
+      </a>
+      <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="feature-col">
+        <div class="feature-col-head">
+          <span class="feature-col-title" data-i18n-en="Reserve" data-i18n-ar="الحجز">Reserve</span>
+          <span class="feature-col-arrow" data-i18n-en="Book →" data-i18n-ar="احجز ←">Book &rarr;</span>
+        </div>
+        <div class="photo-slot filled">
+          <img src="reserve.jpg" alt="JUNO restaurant interior" loading="lazy" />
+        </div>
+      </a>
+    </div>
   </div>
 
   <!-- GALLERY CAROUSEL — picture / video / picture / video, looping, 9:16 -->
@@ -549,38 +650,67 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-grid">
-      <div class="footer-col-left">
-        <a href="https://www.instagram.com/juno.ksa" target="_blank" rel="noopener">Instagram</a>
-      </div>
-      <div class="footer-logo">
-        <svg viewBox="0 0 680 285" xmlns="http://www.w3.org/2000/svg" aria-label="JUNO">
-          <text x="125" y="220"
-                font-family="'Archivo', 'Arial Black', sans-serif"
-                font-weight="900"
-                font-size="210"
-                letter-spacing="-4"
-                fill="currentColor"
-                transform="skewX(-22)">JUNO</text>
-        </svg>
-      </div>
-      <div class="footer-col-right">
-        <a href="menu.html">Menu</a>
-        <a href="index.html#about">About</a>
-        <a href="locations.html">Locations</a>
-        <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener">Reserve</a>
-      </div>
+    <div class="footer-signup">
+      <h2 data-i18n-en="Sign up for special events and big news" data-i18n-ar="اشترك للحصول على أحدث الفعاليات والأخبار">Sign up for special events and big news</h2>
+      <p data-i18n-en="Skip to the front of the line and stay up-to-date on the latest." data-i18n-ar="كن أول من يعلم وابقَ على اطلاع بآخر المستجدات.">Skip to the front of the line and stay up-to-date on the latest.</p>
+      <form class="footer-signup-form" id="signupForm">
+        <div class="footer-signup-field">
+          <label for="signupEmail" data-i18n-en="Email Address" data-i18n-ar="البريد الإلكتروني">Email Address</label>
+          <input type="email" id="signupEmail" name="email" required autocomplete="email" placeholder="Email Address" data-i18n-placeholder-en="Email Address" data-i18n-placeholder-ar="البريد الإلكتروني" />
+          <p class="footer-signup-note" id="signupNote"></p>
+        </div>
+        <button type="submit" class="footer-signup-btn" data-i18n-en="I Want In" data-i18n-ar="اشتركني">I Want In</button>
+      </form>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 juno. All rights reserved.</p>
-      <p>Doha &middot; Riyadh &middot; Kuwait City</p>
+      <p data-i18n-en="© 2025 juno. All rights reserved." data-i18n-ar="© 2025 جونو. جميع الحقوق محفوظة.">&copy; 2025 juno. All rights reserved.</p>
+      <p data-i18n-en="Doha · Riyadh · Kuwait City" data-i18n-ar="الدوحة · الرياض · مدينة الكويت">Doha &middot; Riyadh &middot; Kuwait City</p>
     </div>
   </footer>
 
   <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
     function toggleNav() {
       document.getElementById('navCenter').classList.toggle('open');
     }
+
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+      signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const note = document.getElementById('signupNote');
+        const isAr = document.documentElement.getAttribute('lang') === 'ar';
+        note.textContent = isAr ? 'شكرًا لانضمامك!' : 'Thank you — you\'re on the list.';
+        signupForm.reset();
+      });
+    }
+
+    function applyLang(lang) {
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('[data-i18n-en]').forEach(el => {
+        el.textContent = lang === 'ar' ? el.dataset.i18nAr : el.dataset.i18nEn;
+      });
+      document.querySelectorAll('[data-i18n-placeholder-en]').forEach(el => {
+        el.placeholder = lang === 'ar' ? el.dataset.i18nPlaceholderAr : el.dataset.i18nPlaceholderEn;
+      });
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.lang === lang);
+      });
+      const story = document.getElementById('storyText');
+      if (story) story.classList.toggle('rtl-text', lang === 'ar');
+      localStorage.setItem('junoLang', lang);
+    }
+
+    function toggleLang() {
+      const current = document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en';
+      applyLang(current === 'en' ? 'ar' : 'en');
+    }
+
+    applyLang(localStorage.getItem('junoLang') || 'en');
 
     (() => {
       const slides = document.querySelectorAll('#galleryCarousel .gallery-slide');
