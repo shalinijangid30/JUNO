@@ -239,13 +239,17 @@
         url('hero.png') center/cover no-repeat;
     }
 
-    /* ── INTRO ────────────────────────────────── */
-    .intro {
+    /* ── STORY + FEATURE SHARED BACKGROUND ────── */
+    .story-feature-wrap {
+      position: relative;
       background:
         linear-gradient(rgba(12,11,8,0.82), rgba(12,11,8,0.88)),
         url('3.jpg') center/cover no-repeat;
+    }
+
+    /* ── INTRO ────────────────────────────────── */
+    .intro {
       padding: 96px 40px;
-      border-top: 1px solid var(--rule);
     }
     .intro-inner {
       max-width: 720px;
@@ -334,10 +338,6 @@
     .feature-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--rule);
-      background:
-        linear-gradient(rgba(12,11,8,0.82), rgba(12,11,8,0.88)),
-        url('3.jpg') center/cover no-repeat;
     }
     .feature-col {
       display: block;
@@ -424,7 +424,6 @@
       max-width: 1100px;
       margin: 0 auto 56px;
       padding-bottom: 40px;
-      border-bottom: 1px solid var(--rule);
     }
     .footer-signup h2 {
       font-family: 'Cormorant Garamond', serif;
@@ -495,7 +494,6 @@
     .footer-bottom {
       max-width: 1100px;
       margin: 0 auto;
-      border-top: 1px solid var(--rule);
       padding-top: 24px;
       display: flex;
       justify-content: space-between;
@@ -594,36 +592,39 @@
     <div class="hero-bg"></div>
   </section>
 
-  <!-- INTRO TEXT -->
-  <section class="intro" id="about">
-    <div class="intro-inner">
-      <span class="intro-eyebrow" data-i18n-en="Our Story" data-i18n-ar="قصتنا">Our Story</span>
-      <p class="intro-text" id="storyText">
-        <strong>Juno</strong> <span data-i18n-en="celebrates the art of gathering. We bring together considered cuisine, precise technique, and gracious hospitality in a refined atmosphere. Discover elevated dining and warm, intuitive service at our current homes with more destinations arriving soon." data-i18n-ar="تحتفي بفن الاجتماع. نجمع بين المأكولات المدروسة، والتقنية الدقيقة، والضيافة الكريمة في أجواء راقية. اكتشف تجربة طعام استثنائية وخدمة دافئة وحدسية في فروعنا الحالية، مع وجهات جديدة قريبًا.">celebrates the art of gathering. We bring together considered cuisine, precise technique, and gracious hospitality in a refined atmosphere. Discover elevated dining and warm, intuitive service at our current homes with more destinations arriving soon.</span>
-      </p>
-    </div>
-  </section>
+  <!-- OUR STORY + FEATURE ROW — shared 3.jpg background -->
+  <div class="story-feature-wrap">
+    <!-- INTRO TEXT -->
+    <section class="intro" id="about">
+      <div class="intro-inner">
+        <span class="intro-eyebrow" data-i18n-en="Our Story" data-i18n-ar="قصتنا">Our Story</span>
+        <p class="intro-text" id="storyText">
+          <strong>Juno</strong> <span data-i18n-en="celebrates the art of gathering. We bring together considered cuisine, precise technique, and gracious hospitality in a refined atmosphere. Discover elevated dining and warm, intuitive service at our current homes with more destinations arriving soon." data-i18n-ar="تحتفي بفن الاجتماع. نجمع بين المأكولات المدروسة، والتقنية الدقيقة، والضيافة الكريمة في أجواء راقية. اكتشف تجربة طعام استثنائية وخدمة دافئة وحدسية في فروعنا الحالية، مع وجهات جديدة قريبًا.">celebrates the art of gathering. We bring together considered cuisine, precise technique, and gracious hospitality in a refined atmosphere. Discover elevated dining and warm, intuitive service at our current homes with more destinations arriving soon.</span>
+        </p>
+      </div>
+    </section>
 
-  <!-- FEATURE ROW — Menu / Reserve -->
-  <div class="feature-row">
-    <a href="menu.html" class="feature-col">
-      <div class="feature-col-head">
-        <span class="feature-col-title" data-i18n-en="Menu" data-i18n-ar="القائمة">Menu</span>
-        <span class="feature-col-arrow" data-i18n-en="View →" data-i18n-ar="عرض ←">View &rarr;</span>
-      </div>
-      <div class="photo-slot filled">
-        <img src="menu.jpg" alt="JUNO menu dish" loading="lazy" />
-      </div>
-    </a>
-    <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="feature-col">
-      <div class="feature-col-head">
-        <span class="feature-col-title" data-i18n-en="Reserve" data-i18n-ar="الحجز">Reserve</span>
-        <span class="feature-col-arrow" data-i18n-en="Book →" data-i18n-ar="احجز ←">Book &rarr;</span>
-      </div>
-      <div class="photo-slot filled">
-        <img src="reserve.jpg" alt="JUNO restaurant interior" loading="lazy" />
-      </div>
-    </a>
+    <!-- FEATURE ROW — Menu / Reserve -->
+    <div class="feature-row">
+      <a href="menu.html" class="feature-col">
+        <div class="feature-col-head">
+          <span class="feature-col-title" data-i18n-en="Menu" data-i18n-ar="القائمة">Menu</span>
+          <span class="feature-col-arrow" data-i18n-en="View →" data-i18n-ar="عرض ←">View &rarr;</span>
+        </div>
+        <div class="photo-slot filled">
+          <img src="menu.jpg" alt="JUNO menu dish" loading="lazy" />
+        </div>
+      </a>
+      <a href="https://eatapp.co/reserve/juno-restaurant-al-riyadh-386ecc" target="_blank" rel="noopener" class="feature-col">
+        <div class="feature-col-head">
+          <span class="feature-col-title" data-i18n-en="Reserve" data-i18n-ar="الحجز">Reserve</span>
+          <span class="feature-col-arrow" data-i18n-en="Book →" data-i18n-ar="احجز ←">Book &rarr;</span>
+        </div>
+        <div class="photo-slot filled">
+          <img src="reserve.jpg" alt="JUNO restaurant interior" loading="lazy" />
+        </div>
+      </a>
+    </div>
   </div>
 
   <!-- GALLERY CAROUSEL — picture / video / picture / video, looping, 9:16 -->
